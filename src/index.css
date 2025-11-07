@@ -94,17 +94,23 @@ All colors MUST be HSL.
   }
 
   /* Prevent buttons from staying highlighted on mobile after tap */
-  button {
+  button,
+  .answer-button {
     -webkit-tap-highlight-color: transparent;
     outline: none;
+    box-shadow: none;
     user-select: none;
   }
 
-  button:focus {
+  button:focus,
+  .answer-button:focus {
     outline: none !important;
+    box-shadow: none !important;
   }
 
-  button:active {
+  button:active,
+  .answer-button:active {
     outline: none !important;
+    box-shadow: none !important;
   }
 }

@@ -53,13 +53,16 @@ export const QuestionCard = ({
               variant={buttonVariant}
               size="lg"
               onClick={(e) => {
+                e.preventDefault();
                 e.currentTarget.blur();
                 onAnswer(idx);
               }}
               disabled={answered}
               className={`
+                answer-button
                 h-auto py-3 sm:py-4 px-4 sm:px-6 text-left justify-start text-sm sm:text-base md:text-lg
                 transition-all active:scale-95 sm:hover:scale-105 hover:shadow-card
+                focus:outline-none active:outline-none focus:ring-0 active:ring-0
                 ${extraClasses}
                 ${answered ? 'cursor-default' : 'cursor-pointer'}
               `}

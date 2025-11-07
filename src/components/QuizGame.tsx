@@ -207,6 +207,7 @@ export const QuizGame = ({ playerName, avatar, onExit, onFinish }: QuizGameProps
       {/* Question */}
       <div className="max-w-4xl mx-auto px-2 sm:px-0">
         <QuestionCard
+          key={currentQuestion.id}
           question={currentQuestion}
           onAnswer={handleAnswer}
           answered={questionStates[currentIndex].answered}
