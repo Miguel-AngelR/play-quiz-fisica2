@@ -52,7 +52,10 @@ export const QuestionCard = ({
               key={idx}
               variant={buttonVariant}
               size="lg"
-              onClick={() => onAnswer(idx)}
+              onClick={(e) => {
+                e.currentTarget.blur();
+                onAnswer(idx);
+              }}
               disabled={answered}
               className={`
                 h-auto py-3 sm:py-4 px-4 sm:px-6 text-left justify-start text-sm sm:text-base md:text-lg
