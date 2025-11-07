@@ -11,14 +11,14 @@ export const AvatarSelector = ({ selectedAvatar, onSelectAvatar }: AvatarSelecto
       <label className="block text-sm font-medium text-foreground">
         Elige tu avatar
       </label>
-      <div className="grid grid-cols-8 gap-2">
+      <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
         {avatars.map((avatar) => (
           <button
             key={avatar}
             onClick={() => onSelectAvatar(avatar)}
             className={`
-              aspect-square rounded-lg text-3xl flex items-center justify-center
-              transition-all duration-200 hover:scale-110
+              aspect-square rounded-lg text-2xl sm:text-3xl flex items-center justify-center
+              transition-all duration-200 active:scale-95 sm:hover:scale-110
               ${
                 selectedAvatar === avatar
                   ? "bg-primary shadow-glow ring-2 ring-primary"

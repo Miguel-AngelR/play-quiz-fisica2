@@ -11,7 +11,7 @@ interface QuizGameProps {
   playerName: string;
   avatar: string;
   onExit: () => void;
-  onFinish: (score: number, correctAnswers: number, totalQuestions: number) => void;
+  onFinish: (score: number, correctAnswers: number, totalQuestions: number, userAnswers: (number | null)[]) => void;
 }
 
 interface QuestionState {
@@ -32,6 +32,7 @@ export const QuizGame = ({ playerName, avatar, onExit, onFinish }: QuizGameProps
   const [timeLeft, setTimeLeft] = useState(30);
   const [isRetryPhase, setIsRetryPhase] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<(number | null)[]>(new Array(questions.length).fill(null));
 
   const currentQuestion = questionStates[currentIndex]?.question;
   const totalQuestions = questionStates.length;
@@ -73,6 +74,14 @@ export const QuizGame = ({ playerName, avatar, onExit, onFinish }: QuizGameProps
     const isCorrect = selectedIndex === currentQuestion.correctAnswer;
     const timeBonus = Math.floor((timeLeft / 30) * 50);
     const pointsEarned = isCorrect ? 50 + timeBonus : 0;
+
+    // Guardar la respuesta del usuario
+    const originalQuestionId = currentQuestion.id;
+    setUserAnswers((prev) => {
+      const newAnswers = [...prev];
+      newAnswers[originalQuestionId - 1] = selectedIndex;
+      return newAnswers;
+    });
 
     setQuestionStates((prev) => {
       const newStates = [...prev];
@@ -135,7 +144,7 @@ export const QuizGame = ({ playerName, avatar, onExit, onFinish }: QuizGameProps
         setTimeLeft(30);
       } else {
         // Juego terminado
-        onFinish(score, correctCount, questions.length);
+        onFinish(score, correctCount, questions.length, userAnswers);
       }
     }
   };
@@ -151,49 +160,52 @@ export const QuizGame = ({ playerName, avatar, onExit, onFinish }: QuizGameProps
   }
 
   return (
-    <div className="min-h-screen bg-background p-4">
+    <div className="min-h-screen bg-background p-3 sm:p-4 md:p-6 pb-16">
       {/* Header */}
-      <div className="max-w-6xl mx-auto mb-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl">{avatar}</span>
-            <div>
-              <div className="font-bold text-lg">{playerName}</div>
-              <div className="text-sm text-muted-foreground">
+      <div className="max-w-6xl mx-auto mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+            <span className="text-3xl sm:text-4xl">{avatar}</span>
+            <div className="flex-1 min-w-0">
+              <div className="font-bold text-base sm:text-lg truncate">{playerName}</div>
+              <div className="text-xs sm:text-sm text-muted-foreground">
                 Pregunta {currentIndex + 1} de {totalQuestions}
               </div>
             </div>
           </div>
 
-          <ScoreBoard score={score} level={Math.floor(score / 100) + 1} />
+          <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+            <ScoreBoard score={score} level={Math.floor(score / 100) + 1} />
 
-          <Button variant="outline" onClick={handleExit} size="sm">
-            <Home className="mr-2 h-4 w-4" />
-            Salir
-          </Button>
+            <Button variant="outline" onClick={handleExit} size="sm" className="shrink-0">
+              <Home className="mr-2 h-4 w-4" />
+              <span className="hidden sm:inline">Salir</span>
+              <span className="sm:hidden">Salir</span>
+            </Button>
+          </div>
         </div>
       </div>
 
       {/* Blessing Notification */}
       {blessingActive && (
-        <div className="max-w-4xl mx-auto mb-4 animate-slide-up">
-          <div className="bg-gradient-success rounded-lg p-4 flex items-center justify-center gap-2 shadow-glow">
-            <Sparkles className="h-6 w-6 text-success-foreground" />
-            <span className="font-bold text-success-foreground">
+        <div className="max-w-4xl mx-auto mb-3 sm:mb-4 animate-slide-up px-2 sm:px-0">
+          <div className="bg-gradient-success rounded-lg p-3 sm:p-4 flex items-center justify-center gap-2 shadow-glow">
+            <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-success-foreground shrink-0" />
+            <span className="font-bold text-xs sm:text-sm md:text-base text-success-foreground text-center">
               ¡Bendición activada! Esta pregunta tiene menos opciones
             </span>
-            <Sparkles className="h-6 w-6 text-success-foreground" />
+            <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-success-foreground shrink-0" />
           </div>
         </div>
       )}
 
       {/* Timer */}
-      <div className="max-w-4xl mx-auto mb-6">
+      <div className="max-w-4xl mx-auto mb-4 sm:mb-6 px-2 sm:px-0">
         <Timer timeLeft={timeLeft} totalTime={30} />
       </div>
 
       {/* Question */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-2 sm:px-0">
         <QuestionCard
           question={currentQuestion}
           onAnswer={handleAnswer}
