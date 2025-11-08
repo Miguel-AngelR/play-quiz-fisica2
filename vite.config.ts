@@ -17,4 +17,4 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
-//HAOLASCAS
+// proceso de configuracion para github pages
