@@ -27,7 +27,7 @@ Juego interactivo de preguntas sobre Física II: electromagnetismo, circuitos y 
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/[tu-usuario]/play-quiz-fisica2.git
+git clone https://github.com/Miguel-AngelR/play-quiz-fisica2.git
 cd play-quiz-fisica2
 
 # Instalar dependencias
