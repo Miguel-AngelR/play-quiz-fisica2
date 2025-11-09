@@ -172,6 +172,4 @@ Las contribuciones son bienvenidas. Por favor:
 
 Para preguntas o sugerencias, abre un issue en GitHub.
 
----
-
-**Desarrollado con ❤️ usando [Lovable](https://lovable.dev)**
+**Desarrollado con ❤️
