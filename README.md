@@ -5,7 +5,7 @@ Juego interactivo de preguntas sobre Física II: electromagnetismo, circuitos y 
 ## 🚀 Demo en Vivo
 
 
-- **GitHub Pages:** https://[tu-usuario].github.io/play-quiz-fisica2/
+- **GitHub Pages:** https://miguel-angelr.github.io/play-quiz-fisica2/
 
 ## 📋 Características
 
