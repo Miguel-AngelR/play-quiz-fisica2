@@ -4,7 +4,7 @@ Juego interactivo de preguntas sobre Física II: electromagnetismo, circuitos y 
 
 ## 🚀 Demo en Vivo
 
-- **Lovable:** https://play-quiz-fisica2.lovable.app/
+
 - **GitHub Pages:** https://[tu-usuario].github.io/play-quiz-fisica2/
 
 ## 📋 Características
@@ -43,12 +43,7 @@ El proyecto estará disponible en `http://localhost:8080`
 
 ### Configuración Inicial (Solo una vez)
 
-1. **Conectar el proyecto a GitHub desde Lovable:**
-   - Click en "GitHub" en Lovable
-   - Autoriza y conecta tu cuenta
-   - Click en "Create Repository"
-
-2. **Activar GitHub Pages:**
+1. **Activar GitHub Pages:**
    - Ve a tu repositorio en GitHub
    - Settings → Pages
    - Source: "GitHub Actions"
@@ -64,19 +59,6 @@ El proyecto se deploya automáticamente a GitHub Pages cada vez que haces push a
 
 **No necesitas hacer nada manualmente** - cada cambio en Lovable se sincroniza con GitHub y se deploya automáticamente.
 
-## 🔄 Flujo de Trabajo
-
-```
-Editas en Lovable
-       ↓
-Cambios se sincronizan con GitHub
-       ↓
-GitHub Actions ejecuta el build
-       ↓
-Deploy automático a GitHub Pages
-       ↓
-Tu sitio se actualiza en segundos
-```
 
 ## 📁 Estructura del Proyecto
 
@@ -118,11 +100,6 @@ npm run lint         # Ejecuta ESLint
 
 ## 🎯 Actualizar el Proyecto
 
-### Desde Lovable (Recomendado)
-
-1. Haz cambios en el editor de Lovable
-2. Los cambios se sincronizan automáticamente con GitHub
-3. GitHub Actions deploya automáticamente
 
 ### Desde tu Editor Local
 
